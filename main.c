@@ -87,6 +87,7 @@ int strings_equal(char const* a, char const* b) {
 		if(a[i] != b[i]) {
 			return 0;
 		}
+		i++;
 	}
 	return 1;
 }
