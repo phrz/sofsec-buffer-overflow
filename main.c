@@ -18,7 +18,7 @@ int strings_equal(char const* a, char const* b);
 
 int main() {
 	int user_id = -1;
-	int is_admin = 0;
+	unsigned is_admin = 0;
 	char password[B_SIZE];
 	char username[B_SIZE];	
 	
@@ -45,7 +45,7 @@ void authenticate(int* user_id, char* username, char* password, int* is_admin) {
 
 		printf("username: '%s'\n", username);
 		printf("password: '%s'\n", password);
-		printf("is_admin: %d\n", is_admin);
+		printf("is_admin: %u\n", is_admin);
 		
 		for(int i = 0; i < N_USERS; i++) {
 			int user_compare = strings_equal(username, users[i].username);
