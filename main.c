@@ -12,7 +12,7 @@ struct User users[N_USERS];
 struct Transaction { int user_id, amount_cents; char vendor[B_SIZE]; };
 struct Transaction transactions[N_TRANSACTIONS];
 
-void authenticate(int* user_id, char* username, char* password);
+void authenticate(int* user_id, char* username, char* password, int* is_admin);
 void display_transactions(int user_id, int is_admin);
 int strings_equal(char const* a, char const* b);
 
@@ -25,7 +25,7 @@ int main() {
 	puts("Welcome to Riverbanks Credit Union");
 	
 	// Log in process
-	authenticate(&user_id, &username[0], &password[0]);
+	authenticate(&user_id, &username[0], &password[0], &is_admin);
 	
 	// Authenticated
 	printf("\nWelcome, %s!\n", users[user_id].name);
@@ -35,7 +35,7 @@ int main() {
 }
 
 // Log the user in (set the user_id variable when authenticated)
-void authenticate(int* user_id, char* username, char* password) {
+void authenticate(int* user_id, char* username, char* password, int* is_admin) {
 	while(1) {
 		puts("==================================");
 		printf("Username: ");
