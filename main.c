@@ -17,8 +17,10 @@ void display_transactions(int user_id, int is_admin);
 int strings_equal(char const* a, char const* b);
 
 int main() {
-	char username[B_SIZE], password[B_SIZE];
-	int is_admin = 0, user_id = -1;
+	int user_id = -1;
+	int is_admin = 0;
+	char password[B_SIZE];
+	char username[B_SIZE];	
 	
 	puts("Welcome to Riverbanks Credit Union");
 	
@@ -40,12 +42,14 @@ void authenticate(int* user_id, char* username, char* password) {
 		fscanf(stdin, "%s", username);
 		printf("Password: ");
 		fscanf(stdin, "%s", password);
+
+		printf("username: '%s'\n", username);
+		printf("password: '%s'\n", password);
+		printf("is_admin: %d\n", is_admin);
 		
 		for(int i = 0; i < N_USERS; i++) {
 			int user_compare = strings_equal(username, users[i].username);
 			int pass_compare = strings_equal(password, users[i].password);
-			printf("'%s'\n", username);
-			printf("'%s'\n", password);
 			if(user_compare && pass_compare) {
 				*user_id = i;
 				break;
