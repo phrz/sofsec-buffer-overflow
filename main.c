@@ -17,7 +17,7 @@ void display_transactions(int user_id, int is_admin);
 
 int main() {
 	char username[B_SIZE], password[B_SIZE];
-	int is_admin = 1, user_id = -1;
+	int is_admin = 0, user_id = -1;
 	
 	puts("Welcome to Riverbanks Credit Union");
 	
