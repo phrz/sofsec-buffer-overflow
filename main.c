@@ -14,6 +14,7 @@ struct Transaction transactions[N_TRANSACTIONS];
 
 void authenticate(int* user_id, char* username, char* password);
 void display_transactions(int user_id, int is_admin);
+int strings_equal(char const* a, char const* b);
 
 int main() {
 	char username[B_SIZE], password[B_SIZE];
@@ -41,9 +42,9 @@ void authenticate(int* user_id, char* username, char* password) {
 		fscanf(stdin, "%s", password);
 		
 		for(int i = 0; i < N_USERS; i++) {
-			int user_compare = strcmp(username, users[i].username);
-			int pass_compare = strcmp(password, users[i].password);
-			if(user_compare == 0 && pass_compare == 0) {
+			int user_compare = strings_equal(username, users[i].username);
+			int pass_compare = strings_equal(password, users[i].password);
+			if(user_compare && pass_compare) {
 				*user_id = i;
 				break;
 			}
@@ -71,6 +72,23 @@ void display_transactions(int user_id, int is_admin) {
 			printf("%-16s | %8.2f | %s\n", name, cost, vendor);
 		}
 	}
+}
+
+// A safer alternative to strcmp: stop comparing strings
+// when one runs out.
+int my_safe_strcmp(char const* a, char const* b) {
+	// 0 is false: different or error
+	// 1 is true: same strings
+	if(!a || !b) {
+		return 0;
+	}
+	size_t i = 0;
+	while(a[i] != '\0' && b[i] != '\0') {
+		if(a[i] != b[i]) {
+			return 0;
+		}
+	}
+	return 1;
 }
 
 /* ============================================ *
