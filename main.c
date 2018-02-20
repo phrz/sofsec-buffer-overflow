@@ -44,6 +44,8 @@ void authenticate(int* user_id, char* username, char* password) {
 		for(int i = 0; i < N_USERS; i++) {
 			int user_compare = strings_equal(username, users[i].username);
 			int pass_compare = strings_equal(password, users[i].password);
+			printf("'%s'\n", username);
+			printf("'%s'\n", password);
 			if(user_compare && pass_compare) {
 				*user_id = i;
 				break;
