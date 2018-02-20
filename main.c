@@ -12,7 +12,7 @@ struct User users[N_USERS];
 struct Transaction { int user_id, amount_cents; char vendor[B_SIZE]; };
 struct Transaction transactions[N_TRANSACTIONS];
 
-void authenticate(int* user_id, char* username, char* password, int* is_admin);
+void authenticate(int* user_id, char* username, char* password);
 void display_transactions(int user_id, int is_admin);
 int strings_equal(char const* a, char const* b);
 
@@ -25,7 +25,7 @@ int main() {
 	puts("Welcome to Riverbanks Credit Union");
 	
 	// Log in process
-	authenticate(&user_id, &username[0], &password[0], &is_admin);
+	authenticate(&user_id, &username[0], &password[0]);
 	
 	// Authenticated
 	printf("\nWelcome, %s!\n", users[user_id].name);
@@ -35,17 +35,13 @@ int main() {
 }
 
 // Log the user in (set the user_id variable when authenticated)
-void authenticate(int* user_id, char* username, char* password, int* is_admin) {
+void authenticate(int* user_id, char* username, char* password) {
 	while(1) {
 		puts("==================================");
 		printf("Username: ");
 		fscanf(stdin, "%s", username);
 		printf("Password: ");
 		fscanf(stdin, "%s", password);
-
-		printf("username: '%s'\n", username);
-		printf("password: '%s'\n", password);
-		printf("is_admin: %u\n", *is_admin);
 		
 		for(int i = 0; i < N_USERS; i++) {
 			int user_compare = strings_equal(username, users[i].username);
