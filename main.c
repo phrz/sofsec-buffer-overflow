@@ -76,7 +76,7 @@ void display_transactions(int user_id, int is_admin) {
 
 // A safer alternative to strcmp: stop comparing strings
 // when one runs out.
-int my_safe_strcmp(char const* a, char const* b) {
+int strings_equal(char const* a, char const* b) {
 	// 0 is false: different or error
 	// 1 is true: same strings
 	if(!a || !b) {
